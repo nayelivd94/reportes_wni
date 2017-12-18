@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_purchaseorderwni_document">
+    
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <t t-call="reportes_wni.extend_layout_p">
+        <div class="page">
+           
+            
+                <!-- Multicompany -->
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+               
+                <table style="border:0px solid white; height:10%" cellspacing="0" cellpadding="0">
+                
+                    <tr>
+                        <th style="width:20%;" > <br/>
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="height:12%; width:90%"  align="middle"/>
+                        </th>
+                        <th style="width:45%;  padding-left:15px;margin-left:15px;">
+                            <table style="width:100%;border:0px solid white;align:top;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td style=" font-size:11pt;font-style:bold; font-weight:900;  ">
+                                        <span style=" font-size:11pt; font-style:bold; color:#00009b; text-align:left; " t-field="company.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td style=" font-size:10pt; font-style:normal; font-weight:normal;">
+                                    Francisco Pimental 98
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style=" font-size:8pt;font-style:normal;font-weight:normal;">
+                                    Col. San Rafael 
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style=" font-size:8pt;font-style:normal;font-weight:normal;">
+                                   México, D.F, C.P. 06470
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style=" font-size:8pt;font-style:normal;font-weight:normal;">
+                                   México.
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style=" font-size:8pt;font-style:normal;font-weight:normal;">
+                                  Tel. +52(55)52543948
+                                  </td>
+                                </tr>
+                            </table>
+                        </th>
+                        <th style="width:35%; text-align:left;"><strong style=" font-size:14pt; font-family:Arial, sans-serif; font-style:bold; font-weight: 900;color:#00009b; ">Orden de Compra</strong><br/>
+                            <strong style="font-family:Arial, sans-serif;  font-size:10pt; font-style:bold; font-weight: 900;">No. Orden de Compra: </strong><span style="  font-size:9pt; " t-field="o.name"/><br/>
+                             <strong style=" font-family:Arial, sans-serif; font-size:10pt; font-style:bold; font-weight: 900;">Fecha Orden de Compra: </strong><span style="  font-size:9pt;" t-field="o.date_order"/><br/>
+                            
+
+                        </th>
+                    </tr>
+                
+                </table>
+
+                
+                <br/>
+
+                <table style="width:100%;border:1px solid gray;" >
+                <thead>
+                    <tr>
+                        <th style="width:50%; text-align:left; border-right:1px solid gray; padding-left:15px;margin-left:15px; "><strong style="font-family:Arial, sans-serif;  text-align:left; font-size:12pt;font-style:bold; font-weight: 900;">Compra Para:</strong></th>
+                        <th style="width:50%; text-align:left;  padding-left:15px;margin-left:15px;"><strong style="font-family:Arial, sans-serif;  text-align:left; font-size:12pt; font-style:bold; font-weight: 900;">Envío Para:</strong></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-family:Arial, sans-serif;  text-align:left; font-size:10pt;border-right:1px solid gray; padding-left:15px;margin-left:15px; "> 
+                            <span t-field="o.partner_id.name"/><br/>
+                            <span t-field="o.partner_id.street"/><br/>
+                            <span t-field="o.partner_id.street2"/><br/>
+                            <span t-field="o.partner_id.city"/>
+                            <strong>,</strong>
+                            <span t-field="o.partner_id.state_id.name"/>
+                            <span t-field="o.partner_id.country_id.name"/> <br/>
+                            Tel. <span t-field="o.partner_id.phone"/><strong>.</strong> 
+
+                        </td>
+                        <td style="font-family:Arial, sans-serif;  text-align:left;  font-size:10pt; padding-left:15px;margin-left:15px;"> 
+                           <p t-if="o.partner_id.vat">NIF: <span t-field="o.partner_id.vat"/></p>
+                            <span t-field="o.picking_type_id.warehouse_id.name"/><br/>
+                            <span t-field="o.picking_type_id.warehouse_id.partner_id.street"/><br/>
+                            <span t-field="o.picking_type_id.warehouse_id.partner_id.street2"/><br/>
+                            <span t-field="o.picking_type_id.warehouse_id.partner_id.city"/>
+                            <strong>,</strong>
+                            <span t-field="o.picking_type_id.warehouse_id.partner_id.state_id.name"/>
+                            <span t-field="o.picking_type_id.warehouse_id.partner_id.country_id.name"/> <strong>.</strong> 
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+            
+ <br/><br/>
+                <table style="width:100%;" border="1px solid black;" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th name="td_sched_date_h" style="width:25%;"><strong style="font-size:12pt; font-style:bold; font-weight: 900;">Vía de Compra :</strong></th>
+                        <th style="width:25%;"><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Términos de pago:</strong></th>
+                        <th style="width:25%;"><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Referencia:</strong></th>
+                        <th style="width:25%;"><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Comprador:</strong></th>
+                      
+                    </tr>
+                </thead>
+                <tbody style="  font-size:10pt;">
+                    <tr>
+                        <td>
+                        </td>
+                        <td><span t-field="o.payment_term_id.name"/>
+                        </td>
+                        <td>
+                        </td>
+                        <td><span t-field="o.create_uid.name"/>
+                        </td>                       
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <br/>
+<br/>
+            <table style="width:100%;border:1px solid black;"  cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr style="background-color:#3D3D3D; color:white;">
+                        <th><strong style="font-size:11pt; font-style:bold; font-weight: 900;">Cantidad</strong></th>
+                        <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Unidad</strong></th>
+                        <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Producto</strong></th>
+                        <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Descripción</strong></th>
+                        <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Precio Unitario</strong></th>
+                         <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Precio Neto</strong></th>
+                        <th><strong style=" font-size:10pt; font-style:bold; font-weight: 900;">Fecha envío</strong></th>
+                    </tr>
+                </thead>
+                <tbody style="  font-size:10pt;">
+                    <tr t-foreach="o.order_line" t-as="line">
+                        <td><span t-field="line.product_qty"/></td>
+                        <td><span t-field="line.product_uom.name" groups="product.group_uom"/>
+                        </td>
+                         <td> <span t-field="line.product_id.default_code"/>
+                        </td>
+                         <td> <span t-field="line.product_id.name"/>
+                        </td>
+                         <td><span t-field="line.price_unit"/>
+                        </td>
+                         <td> <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                        </td> 
+                        <td><span t-field="line.date_planned"/>
+                        </td>
+                        
+                                             
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+             
+            <style type="text/css">
+                      
+                                     .boxH
+                                    {
+                                        float: right;
+                                        margin-left:100px;
+                                         border-radius: 10px; 
+                                       border:2px solid black;
+                                       width:35%;
+                                    }
+                                    
+              </style>
+            <br/><br/><br/><br/>
+            <div class="row">
+                <div class="boxH">
+                    <table class="table table-condensed" style="  font-size:9pt;">
+                        <tr class="border-black">
+                            <td><strong>Total sin impuestos</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Impuestos</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p style="  font-size:9pt;" t-field="o.notes"/>
+            <div class="oe_structure"/>
+           
+        </div>
+    </t>
+</template>
+
+<template id="report_purchaseorderwni">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="reportes_wni.report_purchaseorderwni_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+
+                
+<template id="reportes_wni.extend_layout_p">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="reportes_wni.report_header_p" />
+            <t t-raw="0" />
+            <t t-call="reportes_wni.report_footer_p" />
+        </template>
+        
+        
+        
+        <template id="reportes_wni.report_header_p">
+            <div class="header">
+               
+                 <!--class="img img-responsive"-->                                
+                   
+            </div>
+        </template>
+        
+        
+        <template id="reportes_wni.report_footer_p">
+            <div class="footer">
+                 <div class="text-center" style="border-top: 1px solid black;">
+                   <!-- <ul class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>-->    
+                    <strong style=" font-size:12pt; font-style:bold; font-weight: 900;">Page: </strong>
+                    <span class="page"/>
+                    <strong style=" font-size:12pt; font-style:bold; font-weight: 900;">/</strong>
+                    <span class="topage"/>                            
+                </div>
+
+
+            </div>
+        </template>
+        
+        
+        
+
+        
+        <report 
+          
+            id="custom_report_purchaseorderwni"
+            string="Pedido de Compra WNI"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            file="reportes_wni.report_purchaseorderwni"
+            name="reportes_wni.report_purchaseorderwni"
+        
+        />
+
+</odoo>

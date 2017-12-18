@@ -1,0 +1,110 @@
+<odoo>
+
+         <template id="extend_layout_wni">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="reportes_wni.report_headerwni" />
+            <t t-raw="0" />
+
+            <t t-call="reportes_wni.report_footerwni" />
+        </template>
+
+
+
+        <template id="report_headerwni">
+            <div class="header">
+            </div>
+        </template>
+
+
+        <template id="report_footerwni">
+            <div class="footer">
+               <div class="text-center" style="border-top: 1px solid black;">
+                   <!-- <ul class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>-->    
+                    <strong style=" font-size:12pt; font-style:bold; font-weight: 900;">Página: </strong>
+                    <span class="page"/>
+                    <strong style=" font-size:12pt; font-style:bold; font-weight: 900;">/</strong>
+                    <span class="topage"/>                            
+                </div>
+            </div>
+        </template>
+
+
+        <!--************************************CODIGO DE  RAUL****************************************  --> 
+        <template id="external_layout_ro">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="reportes_wni.report_header" />
+            <t t-raw="0" />
+            <t t-call="reportes_wni.report_footer" />
+        </template>
+
+        <template id="report_header">
+            <div class="header">
+
+            </div>
+        </template>
+
+
+        <template id="report_footer">
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+
+
+        <template id="external_layout_ro_firma">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="reportes_wni.report_header_firma" />
+            <t t-raw="0" />
+            <t t-call="reportes_wni.report_footer_firma" />
+        </template>
+
+        <template id="report_header_firma">
+            <div class="header">
+
+            </div>
+        </template>
+
+
+        <template id="report_footer_firma">
+            <div class="footer">
+                <div class="row">
+                        <div class="col-xs-5" style="border-top: 1px solid; text-align: center">
+                            ENTREGÓ
+                        </div>
+                        <div class="col-xs-2">
+                        </div>
+                        <div class="col-xs-5" style="border-top: 1px solid; text-align: center">
+                            RECIBIÓ
+                        </div>
+                    </div>
+            </div>
+        </template>
+
+</odoo>
