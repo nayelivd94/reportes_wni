@@ -61,7 +61,7 @@
                                 <tr>
                                   <td style="color: #ff0000; font-size:12pt; text-align: center;">
                                     <strong t-if="o.journal_id.id==58">NC<span t-field="o.number"/></strong>
-                                    <strong t-if="o.journal_id.id==56">MXC<span t-field="o.number"/></strong>
+                                    <strong t-if="o.journal_id.id==56"><span t-field="o.number"/></strong>
                                  </td>
                                 </tr>
                                 </tbody>
@@ -101,8 +101,8 @@
                                             <span t-if="o.partner_id.l10n_mx_street3"> No.Ext. <span t-field="o.partner_id.l10n_mx_street3"/></span>
                                             <span t-if="o.partner_id.l10n_mx_street4"> No.Int. <span t-field="o.partner_id.l10n_mx_street4"/></span><br/> 
                                             
-                                            Col.<span t-raw="'%s &lt;br&gt;' % o.partner_id.parent_id.street2 if o.partner_id.parent_id else o.partner_id.street2"/><br/> 
-                                                <span t-field="o.partner_id.city"/> ,
+                                            Col.<span t-field="o.partner_id.colonia_sat_id.name" /><br/>
+                                                <span t-field="o.partner_id.locality_sat_id.name"/> ,
                                                 <span t-field="o.partner_id.state_id.name"/>                                        
                                         <!--</span>-->
                                        
@@ -118,7 +118,7 @@
                                   </th>
 
                                       <th style="width:35%; ">
-                                         CP: <span style="font-size:8pt;font-style:normal" t-raw="'%s &lt;br&gt;' % o.partner_id.parent_id.zip if o.partner_id.parent_id else o.partner_id.zip"/><br/>
+                                         CP: <span style="font-size:8pt;font-style:normal" t-field="o.partner_id.zip_sat_id.code"/><br/>
                                          <span t-if="o.partner_id.wnii_colonia">RFC. <span style="font-size:8pt; font-style:normal" t-field="o.partner_id.wnii_colonia"/></span>
                                       </th>
                                       <th style="width:10% ">
@@ -154,7 +154,7 @@
                                             <span t-if="o.partner_id.l10n_mx_street3"> No.Ext. <span t-field="o.partner_id.l10n_mx_street3"/></span>
                                             <span t-if="o.partner_id.l10n_mx_street4"> No.Int. <span t-field="o.partner_id.l10n_mx_street4"/></span><br/> 
                                             
-                                            Col.<span t-raw="'%s &lt;br&gt;' % o.partner_id.parent_id.street2 if o.partner_id.parent_id else o.partner_id.street2"/><br/> 
+                                            Col.<span t-field="o.partner_id.colonia_sat_id.name" /><br/>
                                                 <span t-field="o.partner_id.city"/> ,
                                                 <span t-field="o.partner_id.state_id.name"/>                                        
                                        <!--  </span>-->
@@ -169,7 +169,7 @@
                                             </th>
 
                                                 <th style="width:35%; ">
-                                                   CP: <span style="font-size:8pt;font-style:normal" t-raw="'%s &lt;br&gt;' % o.partner_id.parent_id.zip if o.partner_id.parent_id else o.partner_id.zip"/><br/>
+                                                   CP: <span style="font-size:8pt;font-style:normal" t-field="o.partner_id.zip_sat_id.code"/><br/>
                                                    <span t-if="o.partner_id.wnii_colonia">RFC. <span style="font-size:8pt; font-style:normal" t-field="o.partner_id.wnii_colonia"/></span>
                                                 </th>
                                                 <th style="width:10% ">
